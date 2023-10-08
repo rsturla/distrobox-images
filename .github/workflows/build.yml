@@ -68,7 +68,7 @@ jobs:
 
       - name: Build Image
         id: build
-        uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a # v2
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5
         with:
           context: base/ubuntu/${{ matrix.version }}
           file: base/ubuntu/${{ matrix.version }}/Containerfile
