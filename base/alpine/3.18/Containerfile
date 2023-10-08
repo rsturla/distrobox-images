@@ -1,0 +1,16 @@
+FROM docker.io/library/alpine:3.18
+
+COPY *-packages /
+RUN apk update && \
+  apk upgrade && \
+  cat /*-packages | xargs apk add && \
+  rm /*-packages
+
+# Enable password less sudo
+RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toolbox
+
+# Copy the os-release file
+RUN cp -p /etc/os-release /usr/lib/os-release
+
+# Clear out /media
+RUN rm -rf /media
