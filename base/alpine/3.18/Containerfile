@@ -4,7 +4,9 @@ FROM docker.io/library/alpine:3.18
 COPY *-packages /
 RUN apk update && \
   apk upgrade && \
-  cat /*-packages | xargs apk add && \
+  apk add \
+    alpine-base \
+    $(cat *-packages | xargs) && \
   rm -rd /var/cache/apk/* && \
   rm /*-packages
 
