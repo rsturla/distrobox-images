@@ -1,0 +1,8 @@
+FROM docker.io/library/fedora:39
+
+COPY *-packages /
+RUN dnf -y upgrade && \
+  dnf -y swap coreutils-single coreutils-full && \
+  cat /*-packages | xargs dnf -y install && \
+  dnf clean all && \
+  rm /*-packages
