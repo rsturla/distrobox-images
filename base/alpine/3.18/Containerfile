@@ -1,9 +1,11 @@
 FROM docker.io/library/alpine:3.18
 
+# Install packages
 COPY *-packages /
 RUN apk update && \
   apk upgrade && \
   cat /*-packages | xargs apk add && \
+  rm -rd /var/cache/apk/* && \
   rm /*-packages
 
 # Enable password less sudo
